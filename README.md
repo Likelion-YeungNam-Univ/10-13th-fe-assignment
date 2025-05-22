@@ -1,5 +1,5 @@
-## Branch Naming Convention
 ### ~5/25 코드리뷰까지 완료해주세요!
+## Branch Naming Convention
 
 꼭 `main` 브랜치에서 생성해주세요!
 
