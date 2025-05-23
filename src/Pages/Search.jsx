@@ -7,13 +7,6 @@ const Search = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 50);
-  });
-
   const fetchSearch = async () => {
     if (!enter) return;
     try {
