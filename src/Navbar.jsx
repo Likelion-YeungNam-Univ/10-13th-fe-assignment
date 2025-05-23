@@ -9,13 +9,13 @@ const Navbar = () => {
             <Link to="/"><strong>Univ List</strong></Link>
         </div>
         <div className='flex justify-between items-center bg-navy-200 shadow-lg px-30 py-2'>
-            <Link to="/Asia" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">Asia</Link>
-            <Link to="/Europe" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">Europe</Link>
-            <Link to="/NorthAmerica" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">North America</Link>
-            <Link to="/SouthAmerica" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">South America</Link>
-            <Link to="/Oceania" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">Oceania</Link>
-            <Link to="/Africa" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">Africa</Link>
-            <Link to="/All" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">All</Link>
+            <Link to="/asia" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">Asia</Link>
+            <Link to="/europe" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">Europe</Link>
+            <Link to="/northAmerica" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">North America</Link>
+            <Link to="/southAmerica" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">South America</Link>
+            <Link to="/oceania" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">Oceania</Link>
+            <Link to="/africa" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">Africa</Link>
+            <Link to="/all" className="hover:bg-blue-800  hover:text-white hover:rounded-lg px-3 py-1 font-bold">All</Link>
         </div>
     </div>
     

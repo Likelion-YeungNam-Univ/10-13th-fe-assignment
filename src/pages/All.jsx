@@ -10,7 +10,7 @@ const All = () => {
 
     const getUniversities = async () => {
     try {
-        const response = await axios.get('https://ns.json');
+        const response = await axios.get('https://raw.githubusercontent.com/Hipo/university-domains-list/master/world_universities_and_domains.json');
         setUniversities(response.data);
         console.log(response);
         console.log("axios의 get 메서드로 데이터 받아오기 성공");
@@ -27,30 +27,33 @@ const All = () => {
         getUniversities();
     }, []);
 
-    if (loading) return <div>로딩 중......</div>;
-    if (error) return <div>에러: {error}</div>;
+    if (loading) return(
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="text-4xl font-bold">로딩 중......</div>
+            </div>
+        );
+    if (error) return(
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="text-4xl font-bold">에러: {error}</div>
+            </div>
+        );
 
 
     return (
         <div>
-            {error && (
-                <div>
-                    <strong>에러 발생!</strong>
-                    <div>{error}</div>
-                </div>
-            )}
-            <div>
-                <ul>
+            <div className='w-full px-10 flex flex-col justify-center items-center text-2xl pt-5'>
+                <ul className='mt-8 h-[600px] overflow-y-auto w-full'>
                     {universities.map((university,index) => (
-                    <li key={index}>■{university.name}({university.domains})</li>
+                        <li className="p-4" key={index}>
+                        <p> ✿ {university.name} </p> 
+                        <p>country = {university.country}</p>
+                        <p>url = {university.domains}</p>
+                        </li>
                     ))}
                 </ul>
-
             </div>
-        </div>
-        
+        </div>  
     )
-
 }
 
 export default All
