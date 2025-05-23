@@ -1,16 +1,16 @@
 import React from 'react'
-import Navbar from './Navbar';
+import Navbar from '../Navbar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const UnivList = () => {
+const All = () => {
     const [universities, setUniversities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const getUniversities = async () => {
     try {
-        const response = await axios.get('./world_universities_and_domains.json');
+        const response = await axios.get('https://ns.json');
         setUniversities(response.data);
         console.log(response);
         console.log("axios의 get 메서드로 데이터 받아오기 성공");
@@ -33,7 +33,12 @@ const UnivList = () => {
 
     return (
         <div>
-            {/* body */}
+            {error && (
+                <div>
+                    <strong>에러 발생!</strong>
+                    <div>{error}</div>
+                </div>
+            )}
             <div>
                 <ul>
                     {universities.map((university,index) => (
@@ -45,6 +50,7 @@ const UnivList = () => {
         </div>
         
     )
+
 }
 
-export default UnivList
+export default All
