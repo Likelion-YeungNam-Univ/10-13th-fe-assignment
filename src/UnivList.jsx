@@ -33,13 +33,6 @@ const UnivList = () => {
 
     return (
         <div>
-            {/* header */}
-            <div className='text-center align-middle text-5xl bg-blue-900 text-white shadow-lg pt-7 pb-7'> 
-                <strong>Univ List</strong>
-            </div>
-            {/* navbar */}
-            <div><Navbar/></div>
-            
             {/* body */}
             <div>
                 <ul>
