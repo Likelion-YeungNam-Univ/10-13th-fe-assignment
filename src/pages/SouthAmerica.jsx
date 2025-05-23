@@ -17,10 +17,12 @@ const SouthAmerica = () => {
     try {
         const response = await axios.get('https://raw.githubusercontent.com/Hipo/university-domains-list/master/world_universities_and_domains.json');
         setUniversities(response.data);
-        const SouthAmericaUnivs = response.data.filter(univ => southAmericaCountries.includes(univ.country));
-        setUniversities(SouthAmericaUnivs);
         console.log(response);
         console.log("axios의 get 메서드로 데이터 받아오기 성공");
+        const SouthAmericaUnivs = response.data.filter(univ => southAmericaCountries.includes(univ.country));
+        setUniversities(SouthAmericaUnivs);
+        console.log(southAmericaCountries);
+        console.log("SouthAmericaUniv 데이터 불러오기 성공");
     } catch (error) {
         setError("데이터 요청 실패");
         console.error("데이터 요청 실패:", error);

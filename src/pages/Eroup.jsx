@@ -21,10 +21,12 @@ const Eroup = () => {
     try {
         const response = await axios.get('https://raw.githubusercontent.com/Hipo/university-domains-list/master/world_universities_and_domains.json');
         setUniversities(response.data);
-        const EuropeUnivs = response.data.filter(univ => europeCountries.includes(univ.country));
-        setUniversities(EuropeUnivs);
         console.log(response);
         console.log("axios의 get 메서드로 데이터 받아오기 성공");
+        const EuropeUnivs = response.data.filter(univ => europeCountries.includes(univ.country));
+        setUniversities(EuropeUnivs);
+        console.log(europeCountries);
+        console.log("EuropeUniv 데이터 불러오기 성공");
     } catch (error) {
         setError("데이터 요청 실패");
         console.error("데이터 요청 실패:", error);

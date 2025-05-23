@@ -7,8 +7,8 @@ const asiaCountries = [
   "Afghanistan", "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Bhutan", "Brunei", "Cambodia",
   "China", "Cyprus", "East Timor", "Georgia", "India", "Indonesia", "Iran", "Iraq", "Israel", "Japan",
   "Jordan", "Kazakhstan", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Malaysia", "Maldives", "Mongolia",
-  "Myanmar", "Nepal", "North Korea", "Oman", "Pakistan", "Palestine", "Philippines", "Qatar", "Russia",
-  "Saudi Arabia", "Singapore", "South Korea", "Sri Lanka", "Syria", "Taiwan", "Tajikistan", "Thailand",
+  "Myanmar", "Nepal", "Korea, Democratic People's Republic of", "Oman", "Pakistan", "Palestine", "Philippines", "Qatar", "Russia",
+  "Saudi Arabia", "Singapore", "Korea, Republic of", "Sri Lanka", "Syria", "Taiwan", "Tajikistan", "Thailand",
   "Turkey", "Turkmenistan", "United Arab Emirates", "Uzbekistan", "Vietnam", "Yemen"
 ];
 
@@ -22,10 +22,12 @@ const Asia = () => {
     try {
         const response = await axios.get('https://raw.githubusercontent.com/Hipo/university-domains-list/master/world_universities_and_domains.json');
         setUniversities(response.data);
-        const AsiaUnivs = response.data.filter(univ => asiaCountries.includes(univ.country));
-        setUniversities(AsiaUnivs);
         console.log(response);
         console.log("axios의 get 메서드로 데이터 받아오기 성공");
+        const AsiaUnivs = response.data.filter(univ => asiaCountries.includes(univ.country));
+        setUniversities(AsiaUnivs);
+        console.log(asiaCountries);
+        console.log("AsiaUniv 데이터 불러오기 성공");
     } catch (error) {
         setError("데이터 요청 실패");
         console.error("데이터 요청 실패:", error);
