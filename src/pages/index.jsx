@@ -17,11 +17,11 @@ export default function Index() {
     getMovies();
   }, []);
   return (
-    <div>
-      {/* {loading ? (
-        <h1>Loading...</h1>
+    <div className="flex justify-center">
+      {loading ? (
+        <span className="text-2xl">Loading...</span>
       ) : (
-        <div>
+        <div className="flex flex-col space-y-10">
           {movies.map((_movie) => (
             <Movie
               id={_movie.id}
@@ -33,7 +33,7 @@ export default function Index() {
             />
           ))}
         </div>
-      )} */}
+      )}
     </div>
   );
 }
