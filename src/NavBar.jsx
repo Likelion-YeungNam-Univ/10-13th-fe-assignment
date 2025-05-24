@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LogoOut =
-  "https://img.icons8.com/?size=100&id=196&format=png&color=000000";
+  "https://img.icons8.com/?size=100&id=196&format=png&color=ffffff";
 
 const LogoIn =
-  "https://img.icons8.com/?size=100&id=9817&format=png&color=000000";
+  "https://img.icons8.com/?size=100&id=9817&format=png&color=ffffff";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const NavBar = () => {
   const stats = () => navigate("Stats");
 
   return (
-    <div className="flex flex-row p-3 bg-neutral-200">
+    <div className="flex flex-row p-3 bg-gradient-to-l from-blue-600 to-red-500">
       <img
         src={logo ? LogoIn : LogoOut}
         onMouseEnter={() => setLogo(true)}
@@ -31,14 +31,11 @@ const NavBar = () => {
         className="w-10 h-10 p-1"
         alt="home icon"
       ></img>
-      <div className="flex justify-center">
-        <input type="text" value={search} onChange={onChange}></input>
-      </div>
       <div className="w-full flex justify-end">
-        <div onClick={player} className="p-2 hover:font-bold">
+        <div onClick={player} className="text-white p-2 hover:font-bold">
           Player
         </div>
-        <div onClick={team} className="p-2 hover:font-bold">
+        <div onClick={team} className="text-white p-2 hover:font-bold">
           Team
         </div>
       </div>

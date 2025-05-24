@@ -9,8 +9,6 @@ const Team = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const api = new BalldontlieAPI({ apiKey: API_KEY });
-
     const fetchTeams = async () => {
       try {
         const response = await api.nba.getTeams();
@@ -29,9 +27,10 @@ const Team = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold">All NBA Teams</h1>
-      <ul>
-        {" "}
+      <h1 className="flex justify-center w-60 h-11 text-3xl font-bold border-2 rounded-2xl">
+        All NBA Teams
+      </h1>
+      <ul className="">
         {teams.map((team) => (
           <li key={team.id} className="text-xl font-semibold">
             {team.full_name}

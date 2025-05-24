@@ -17,7 +17,8 @@ const Player = () => {
         const response = await api.nba.getPlayers({ page: 1, per_page: 25 });
         setPlayers(response.data);
       } catch (err) {
-        setError("목록을 불러오는 중 오류 발생", err);
+        setError("목록을 불러오는 중 오류 발생");
+        console.log(err);
       } finally {
         setLoadingPlayers(false);
       }
@@ -33,6 +34,7 @@ const Player = () => {
       setClickedPlayer(reponse);
     } catch (err) {
       setError("선수 정보를 불러오는 중 오류 발생");
+      console.log(err);
     } finally {
       setLoadingPlayerDetail(false);
     }
@@ -79,17 +81,21 @@ const Player = () => {
   }
 
   return (
-    <div>
-      <h1>All NBA Player</h1>
+    <div className="p-4">
+      <h1 className="flex justify-center w-60 h-11 text-3xl font-bold border-2 rounded-2xl mb-2">
+        All NBA Player
+      </h1>
       <ul>
-        {" "}
         {players.map((player) => (
           <li
             key={player.id}
-            className="text-xl font-bold"
+            className="flex flex-row justify-between border-2 rounded-xl pl-2 pr-2 text-xl font-bold"
             onClick={() => handleClickedPlayer(player.id)}
           >
-            {player.first_name} {player.last_name} ({player.team.abbreviation})
+            <div>
+              {player.first_name} {player.last_name}
+            </div>
+            <div>({player.team.abbreviation})</div>
           </li>
         ))}
       </ul>
