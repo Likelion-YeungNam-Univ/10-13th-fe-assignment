@@ -10,6 +10,7 @@ import Animation from "./pages/Animation";
 import ActionDetail from "./pages/ActionDetail";
 import ComedyDetail from "./pages/ComedyDetail";
 import HorrorDetail from "./pages/HorrorDetail";
+import RomanceDetail from "./pages/RomanceDetail";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="horror" element={<Horror />} />
           <Route path="horror/:id" element={<HorrorDetail />} />
           <Route path="romance" element={<Romance />} />
+          <Route path="romance/:id" element={<RomanceDetail />} />
           <Route path="animation" element={<Animation />} />
         </Route>
       </Routes>
