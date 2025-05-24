@@ -9,6 +9,7 @@ import Romance from "./pages/Romance";
 import Animation from "./pages/Animation";
 import ActionDetail from "./pages/ActionDetail";
 import ComedyDetail from "./pages/ComedyDetail";
+import HorrorDetail from "./pages/HorrorDetail";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="comedy" element={<Comedy />} />
           <Route path="comedy/:id" element={<ComedyDetail />} />
           <Route path="horror" element={<Horror />} />
+          <Route path="horror/:id" element={<HorrorDetail />} />
           <Route path="romance" element={<Romance />} />
           <Route path="animation" element={<Animation />} />
         </Route>
