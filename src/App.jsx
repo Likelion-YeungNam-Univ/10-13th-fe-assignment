@@ -11,6 +11,7 @@ import ActionDetail from "./pages/ActionDetail";
 import ComedyDetail from "./pages/ComedyDetail";
 import HorrorDetail from "./pages/HorrorDetail";
 import RomanceDetail from "./pages/RomanceDetail";
+import AnimationDetail from "./pages/AnimationDetail";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="romance" element={<Romance />} />
           <Route path="romance/:id" element={<RomanceDetail />} />
           <Route path="animation" element={<Animation />} />
+          <Route path="animation/:id" element={<AnimationDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
