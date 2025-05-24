@@ -1,7 +1,8 @@
 import React from "react";
+import LyricSearch from "./LyricSearch";
 
 const App = () => {
-  return <div className="text-3xl">App</div>;
+  return <LyricSearch />;
 };
 
 export default App;
