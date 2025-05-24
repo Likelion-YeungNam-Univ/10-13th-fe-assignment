@@ -27,12 +27,15 @@ const Team = () => {
 
   return (
     <div className="p-4">
-      <h1 className="flex justify-center w-60 h-11 text-3xl font-bold border-2 rounded-2xl">
+      <h1 className="flex justify-center w-60 h-11 text-3xl font-bold border-2 rounded-2xl mb-2">
         All NBA Teams
       </h1>
       <ul className="">
         {teams.map((team) => (
-          <li key={team.id} className="text-xl font-semibold">
+          <li
+            key={team.id}
+            className="flex flex-row justify-between border-2 rounded-xl pl-2 pr-2 text-xl font-bold"
+          >
             {team.full_name}
           </li>
         ))}
