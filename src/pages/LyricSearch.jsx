@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const LyricSearch = () => {
   const [lyrics, setLyrics] = useState("");
@@ -27,17 +27,17 @@ const LyricSearch = () => {
       setTitle("");
     } catch (error) {
       setError("검색어를 다시 확인해주세요 !");
-      console.error("데이터 로딩 실패: ", error);
+      console.error("로딩 실패: ", error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div className="overflow-y-auto">
       <h2 className="text-2xl m-3 font-semibold">노래 가사 검색</h2>
       <p className="text-gray-500 m-3">
-        영문으로 입력해주세요 ! (예시: aespa / next level)
+        영문으로 입력해주세요! (예시: aespa / whiplash)
       </p>
       <div className="flex space-x-3 m-3">
         <input
@@ -72,7 +72,7 @@ const LyricSearch = () => {
             {displayArtist} - {displayTitle}
           </h3>
           {/* 줄바꿈, 공백 그대로 출력을 위해 <pre>태그 사용 */}
-          <pre className="m-3 p-3">{lyrics}</pre>
+          <pre className="m-4">{lyrics}</pre>
         </div>
       )}
     </div>
