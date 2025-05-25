@@ -3,7 +3,7 @@ import axios from "axios";
 import Movie from "./Movie.jsx";
 
 const Information = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
 
   const getMovies = async () => {
@@ -18,7 +18,7 @@ const Information = () => {
     } catch (err) {
       console.error("목록을 불러오는 중 오류 발생:", err);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -28,7 +28,7 @@ const Information = () => {
 
   return (
     <div>
-      {isLoading ? (
+      {loading ? (
         <h2>Loading...</h2>
       ) : (
         movies.map((movie) => (
