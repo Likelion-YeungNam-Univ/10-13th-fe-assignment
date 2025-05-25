@@ -1,7 +1,21 @@
-import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PokemonList from "./pages/PokemonList";
+import Layout from "./Layout";
+import Home from "./pages/Home";
+import PokemonDetail from "./pages/PokemonDetail";
 
-const App = () => {
-  return <div className="text-3xl">App</div>;
-};
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="pokemon" element={<PokemonList />} />
+          <Route path="pokemon/:id" element={<PokemonDetail />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
 export default App;
