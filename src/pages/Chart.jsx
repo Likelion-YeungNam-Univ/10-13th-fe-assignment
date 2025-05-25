@@ -57,13 +57,16 @@ const Chart = () => {
             hot100.map((hot100Song) => (
               <li key={hot100Song.rank}>
                 <div className="flex items-center border">
-                  <div className="text-5xl bg-black text-white font-bold p-16.5">
+                  <div className="text-5xl bg-black text-white font-bold min-w-45 min-h-45 flex items-center justify-center">
                     {hot100Song.rank}
                   </div>
-                  <img src={hot100Song.image} />
+                  <img
+                    src={hot100Song.image}
+                    className="w-45 h-45 object-cover block"
+                  />
                   <div className="ml-4">
-                    <div className="text-2xl font-bold">{hot100Song.name}</div>
-                    <div className="text-2xl">{hot100Song.artist}</div>
+                    <div className="text-xl font-bold">{hot100Song.name}</div>
+                    <div className="text-md">{hot100Song.artist}</div>
                   </div>
                 </div>
               </li>
@@ -85,13 +88,16 @@ const Chart = () => {
             bill200.map((bill200Song) => (
               <li key={bill200Song.rank}>
                 <div className="flex items-center border">
-                  <div className="text-5xl bg-black text-white font-bold p-16.5">
+                  <div className="text-5xl bg-black text-white font-bold min-w-45 min-h-45 flex items-center justify-center">
                     {bill200Song.rank}
                   </div>
-                  <img src={bill200Song.image} />
+                  <img
+                    src={bill200Song.image}
+                    className="w-45 h-45 object-cover block"
+                  />
                   <div className="ml-4">
-                    <div className="text-2xl font-bold">{bill200Song.name}</div>
-                    <div className="text-2xl">{bill200Song.artist}</div>
+                    <div className="text-xl font-bold">{bill200Song.name}</div>
+                    <div className="text-md">{bill200Song.artist}</div>
                   </div>
                 </div>
               </li>
