@@ -30,8 +30,8 @@ const Animation = () => {
 
   return (
     <div>
-      <h1 className="text-3xl text-center pt-10 font-bold">
-        Animation 영화 목록
+      <h1 className="text-3xl text-center pt-10 font-bold text-red-500">
+        Animation Movies
       </h1>
       <ul className="grid grid-cols-5 gap-10 px-30 py-10">
         {animations.map((ani) => (
@@ -39,8 +39,10 @@ const Animation = () => {
             <Link to={`/animation/${ani.id}`}>
               <img src={`https://image.tmdb.org/t/p/w300${ani.poster_path}`} />
               <div className="flex justify-between">
-                <p className="text-xl font-bold pt-2">{ani.title}</p>
-                <p className="text-gray-600 pt-3">★{ani.vote_average}</p>
+                <p className="text-xl font-bold pt-2 text-red-500">
+                  {ani.title}
+                </p>
+                <p className="text-gray-300 pt-3">★{ani.vote_average}</p>
               </div>
             </Link>
           </li>

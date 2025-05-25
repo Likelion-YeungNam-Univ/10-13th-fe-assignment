@@ -42,11 +42,11 @@ const RomanceDetail = () => {
         </h1>
         <div>
           <span className="text-gray-400">개봉: </span>
-          <span>{movie.release_date} </span>
+          <span className="text-white">{movie.release_date} </span>
         </div>
         <div>
           <span className="text-gray-400">줄거리: </span>
-          <span>{movie.overview}</span>
+          <span className="text-white">{movie.overview}</span>
         </div>
       </div>
     </div>

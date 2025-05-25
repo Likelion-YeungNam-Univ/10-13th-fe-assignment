@@ -37,16 +37,16 @@ const ActionDetail = () => {
         className="mt-4"
       />
       <div className="pt-10">
-        <h1 className="text-3xl font-bold mb-4">
+        <h1 className="text-3xl font-bold mb-4 text-red-500">
           {movie.title} ({movie.release_date})
         </h1>
         <div>
           <span className="text-gray-400">개봉: </span>
-          <span>{movie.release_date} </span>
+          <span className="text-white">{movie.release_date} </span>
         </div>
         <div>
-          <span className="text-gray-400">줄거리: </span>
-          <span>{movie.overview}</span>
+          <span className="text-gray-400 ">줄거리: </span>
+          <span className="text-white">{movie.overview}</span>
         </div>
       </div>
     </div>
