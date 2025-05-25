@@ -1,30 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
-  const linkStyle = "hover:text-white";
+const MovieList = () => {
+  const linkStyle = "hover:underline hover:text-gray-200";
   return (
-    <nav className="space-x-16 px-10 py-5 border-b-2 text-red-500 font-bold">
-      <Link to="/" className={linkStyle}>
-        Home
-      </Link>
+    <div className="flex flex-col space-y-4 text-red-500 text-center pt-50">
       <Link to="/action" className={linkStyle}>
-        Action
+        Action 영화 보러 가기
       </Link>
       <Link to="/comedy" className={linkStyle}>
-        Comedy
+        Comedy 영화 보러 가기
       </Link>
       <Link to="/horror" className={linkStyle}>
-        Horror
+        Horror 영화 보러 가기
       </Link>
       <Link to="/romance" className={linkStyle}>
-        Romance
+        Romance 영화 보러 가기
       </Link>
       <Link to="/animation" className={linkStyle}>
-        Animation
+        Animation 영화 보러 가기
       </Link>
-    </nav>
+    </div>
   );
 };
 
-export default Navbar;
+export default MovieList;

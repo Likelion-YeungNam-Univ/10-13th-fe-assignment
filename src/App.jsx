@@ -12,13 +12,15 @@ import ComedyDetail from "./pages/ComedyDetail";
 import HorrorDetail from "./pages/HorrorDetail";
 import RomanceDetail from "./pages/RomanceDetail";
 import AnimationDetail from "./pages/AnimationDetail";
+import MovieList from "./pages/MovieList";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="home" element={<Home />} />
+          <Route index element={<Home />} />
+          <Route path="movieList" element={<MovieList />} />
           <Route path="action" element={<Action />} />
           <Route path="action/:id" element={<ActionDetail />} />
           <Route path="comedy" element={<Comedy />} />
