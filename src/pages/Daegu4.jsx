@@ -9,13 +9,11 @@ const Daegu4 = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        // proxy 설정을 통해 아래 경로가
-        // https://thegoodnight.daegu.go.kr/ajax/api/thegoodnight.html?mode=json&item_count=10
-        // 로 포워딩됩니다.
+
         const res = await axios.get('/ajax/api/thegoodnight.html', {
           params: { mode: 'json', item_count: 10 }
         })
-        // 실제 배열은 res.data.data 안에 있으니 여기서 꺼냅니다.
+        
         setList(res.data.data)
       } catch (e) {
         console.error(e)
