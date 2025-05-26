@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
+// 카카오맵 api key
 const JS_API_KEY = import.meta.env.VITE_KAKAO_JS_KEY;
 const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_KEY;
 
 function App() {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState("멋쟁이사자처럼");
   const [marker, setMarker] = useState(null);
 
+  // 카카오맵 가져오기
   useEffect(() => {
     const loadMap = () => {
       const container = mapRef.current;
@@ -39,6 +41,7 @@ function App() {
     document.head.appendChild(script);
   }, []);
 
+  // 카카오맵 검색 api 호출
   const handleSearch = async () => {
     if (!keyword.trim()) return;
 
@@ -59,6 +62,7 @@ function App() {
         return;
       }
 
+      // 좌표를 사용해 검색 후 맵마킹
       const { x, y } = result;
 
       const latLng = new window.kakao.maps.LatLng(y, x);
@@ -94,6 +98,12 @@ function App() {
           placeholder="장소를 입력하세요"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSearch();
+            }
+          }}
           className="px-4 py-2 border-4 border-sky-950"
         />
         <button
