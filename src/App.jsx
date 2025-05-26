@@ -1,55 +1,126 @@
+// App.jsx
 import React, { useEffect, useState } from "react";
+import "./App.css";
 
-// OpenWeatherMap API 키를 변수에 저장
 const API_KEY = "248ae18d984f623c4b752e664091236f";
+const CITY_NAME = "Daegu";
+const LAT = 35.87;  // 대구 위도
+const LON = 128.60; // 대구 경도
 
-function App() {
-  // 날씨 데이터를 저장할 상태 (초기값 null)
+function getAQIInfo(aqi) {
+  switch (aqi) {
+    case 1:
+      return { icon: "😃", message: "오늘은 공기질이 좋아요!" };
+    case 2:
+      return { icon: "🙂", message: "공기질이 보통이에요." };
+    case 3:
+      return { icon: "😷", message: "공기질이 나빠요! 마스크 착용을 권고합니다." };
+    case 4:
+      return { icon: "🤢", message: "매우 나쁜 공기질! 외출을 자제하세요." };
+    case 5:
+      return { icon: "☠️", message: "심각한 공기오염! 반드시 마스크 착용하세요." };
+    default:
+      return { icon: "❓", message: "공기질 정보를 알 수 없습니다." };
+  }
+}
+
+export default function App() {
   const [weather, setWeather] = useState(null);
-  // 로딩 상태를 저장할 상태 (초기값 true)
+  const [tomorrowWeather, setTomorrowWeather] = useState(null);
+  const [airPollution, setAirPollution] = useState(null);
   const [loading, setLoading] = useState(true);
-  // 에러 메시지를 저장할 상태 (초기값 null)
   const [error, setError] = useState(null);
 
-  // 컴포넌트가 처음 렌더링 될 때 한 번 실행되는 useEffect
   useEffect(() => {
-    // fetch로 API 호출: 대구 날씨 데이터를 요청함 (units=metric으로 섭씨 온도)
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=Daegu&appid=${API_KEY}&units=metric`
-    )
-      .then((res) => {
-        // 응답이 정상(200~299)일 때만 json 변환, 아니면 에러 던짐
-        if (!res.ok) throw new Error("API 요청 실패");
-        return res.json();
-      })
-      .then((data) => {
-        // 받아온 데이터를 상태에 저장
-        setWeather(data);
-        // 로딩 완료 상태로 변경
+    setLoading(true);
+
+    const weatherFetch = fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${API_KEY}&units=metric&lang=kr`
+    ).then(res => {
+      if (!res.ok) throw new Error("현재 날씨 API 실패");
+      return res.json();
+    });
+
+    const forecastFetch = fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME}&appid=${API_KEY}&units=metric&lang=kr`
+    ).then(res => {
+      if (!res.ok) throw new Error("예보 API 실패");
+      return res.json();
+    });
+
+    const airFetch = fetch(
+      `https://api.openweathermap.org/data/2.5/air_pollution?lat=${LAT}&lon=${LON}&appid=${API_KEY}`
+    ).then(res => {
+      if (!res.ok) throw new Error("공기질 API 실패");
+      return res.json();
+    });
+
+    Promise.all([weatherFetch, forecastFetch, airFetch])
+      .then(([wData, fData, aData]) => {
+        setWeather(wData);
+        setAirPollution(aData);
+
+        const today = new Date();
+        const tm = new Date(today);
+        tm.setDate(today.getDate() + 1);
+        const dateStr = tm.toISOString().split("T")[0];
+        const tNoon = fData.list.find(item =>
+          item.dt_txt.startsWith(dateStr) && item.dt_txt.includes("12:00:00")
+        );
+        setTomorrowWeather(tNoon);
         setLoading(false);
       })
-      .catch((err) => {
-        // 에러가 발생하면 에러 메시지를 상태에 저장하고 로딩 종료
+      .catch(err => {
         setError(err.message);
         setLoading(false);
       });
-  }, []); // 빈 배열은 컴포넌트 첫 렌더링 시 1회만 실행하라는 뜻
+  }, []);
 
-  // 로딩 중일 때 화면에 표시할 내용
-  if (loading) return <div>로딩 중...</div>;
-  // 에러가 있을 때 화면에 표시할 내용
-  if (error) return <div>에러: {error}</div>;
+  if (loading) return <div className="loading">로딩 중...</div>;
+  if (error) return <div className="error">에러: {error}</div>;
 
-  // API에서 받은 날씨 데이터를 화면에 렌더링
+  const aqiInfo = getAQIInfo(airPollution.list[0].main.aqi);
+
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1>대구 날씨</h1>
-      <p>온도: {weather.main.temp}°C</p>
-      <p>날씨: {weather.weather[0].description}</p>
-      <p>습도: {weather.main.humidity}%</p>
-      <p>풍속: {weather.wind.speed} m/s</p>
+    <div className="container">
+      {/* 오늘 날씨 */}
+      <section className="info-section">
+        <h2>오늘 날씨에요!</h2>
+        <div className="weather-temp">
+          {weather.main.temp.toFixed(1)}°C
+        </div>
+        <div className="weather-details">
+          <p><span>날씨:</span>{weather.weather[0].description}</p>
+          <p><span>습도:</span>{weather.main.humidity}%</p>
+          <p><span>풍속:</span>{weather.wind.speed} m/s</p>
+        </div>
+      </section>
+
+      {/* 내일 날씨 */}
+      <section className="info-section">
+        <h2>내일 날씨에요!</h2>
+        {tomorrowWeather ? (
+          <>
+            <div className="weather-temp">
+              {tomorrowWeather.main.temp.toFixed(1)}°C
+            </div>
+            <div className="weather-details">
+              <p><span>날씨:</span>{tomorrowWeather.weather[0].description}</p>
+              <p><span>습도:</span>{tomorrowWeather.main.humidity}%</p>
+              <p><span>풍속:</span>{tomorrowWeather.wind.speed} m/s</p>
+            </div>
+          </>
+        ) : (
+          <div>내일 데이터 없음</div>
+        )}
+      </section>
+
+      {/* 공기질 */}
+      <section className="info-section">
+        <h2>오늘 대기질이에요!</h2>
+        <div className="aqi-icon">{aqiInfo.icon}</div>
+        <div className="aqi-message">{aqiInfo.message}</div>
+      </section>
     </div>
   );
 }
-
-export default App;
